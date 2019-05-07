@@ -1,0 +1,39 @@
+{
+    "type": "object",
+    "properties": {
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceName": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Use to provide parameters when requesting an export of all devices in the IoT hub.",
+            "properties": {
+                "excludeKeys": {
+                    "description": "The value indicating whether keys should be excluded during export.",
+                    "type": "boolean"
+                },
+                "exportBlobContainerUri": {
+                    "description": "The export blob container URI.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "exportBlobContainerUri",
+                "excludeKeys"
+            ],
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

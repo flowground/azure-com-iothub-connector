@@ -1,0 +1,88 @@
+{
+    "type": "object",
+    "properties": {
+        "iotHubName": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Input for testing all routes",
+            "properties": {
+                "message": {
+                    "description": "Routing message",
+                    "properties": {
+                        "appProperties": {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "description": "App properties",
+                            "type": "object"
+                        },
+                        "body": {
+                            "description": "Body of routing message",
+                            "type": "string"
+                        },
+                        "systemProperties": {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "description": "System properties",
+                            "type": "object"
+                        }
+                    },
+                    "type": "object"
+                },
+                "routingSource": {
+                    "description": "Routing source",
+                    "enum": [
+                        "Invalid",
+                        "DeviceMessages",
+                        "TwinChangeEvents",
+                        "DeviceLifecycleEvents",
+                        "DeviceJobLifecycleEvents"
+                    ],
+                    "type": "string",
+                    "x-ms-enum": {
+                        "modelAsString": true,
+                        "name": "RoutingSource"
+                    }
+                },
+                "twin": {
+                    "description": "Routing Twin Reference",
+                    "properties": {
+                        "properties": {
+                            "properties": {
+                                "desired": {
+                                    "description": "Twin desired properties",
+                                    "type": "object"
+                                },
+                                "reported": {
+                                    "description": "Twin desired properties",
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "tags": {
+                            "description": "Twin Tags",
+                            "type": "object"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

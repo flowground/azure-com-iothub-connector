@@ -1,0 +1,125 @@
+{
+    "type": "object",
+    "properties": {
+        "iotHubName": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Input for testing route",
+            "properties": {
+                "message": {
+                    "description": "Routing message",
+                    "properties": {
+                        "appProperties": {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "description": "App properties",
+                            "type": "object"
+                        },
+                        "body": {
+                            "description": "Body of routing message",
+                            "type": "string"
+                        },
+                        "systemProperties": {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "description": "System properties",
+                            "type": "object"
+                        }
+                    },
+                    "type": "object"
+                },
+                "route": {
+                    "description": "Route properties",
+                    "properties": {
+                        "condition": {
+                            "description": "The condition that is evaluated to apply the routing rule. If no condition is provided, it evaluates to true by default. For grammar, see: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-query-language",
+                            "type": "string"
+                        },
+                        "endpointNames": {
+                            "description": "The list of endpoints to which messages that satisfy the condition are routed. Currently only one endpoint is allowed.",
+                            "items": {
+                                "type": "string"
+                            },
+                            "maxItems": 1,
+                            "minItems": 1,
+                            "type": "array"
+                        },
+                        "isEnabled": {
+                            "description": "Used to specify whether a route is enabled.",
+                            "type": "boolean"
+                        },
+                        "name": {
+                            "description": "The name of the route. The name can only include alphanumeric characters, periods, underscores, hyphens, has a maximum length of 64 characters, and must be unique.",
+                            "pattern": "^[A-Za-z0-9-._]{1,64}$",
+                            "type": "string"
+                        },
+                        "source": {
+                            "description": "The source that the routing rule is to be applied to, such as DeviceMessages.",
+                            "enum": [
+                                "Invalid",
+                                "DeviceMessages",
+                                "TwinChangeEvents",
+                                "DeviceLifecycleEvents",
+                                "DeviceJobLifecycleEvents"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "RoutingSource"
+                            }
+                        }
+                    },
+                    "required": [
+                        "name",
+                        "endpointNames",
+                        "source",
+                        "isEnabled"
+                    ],
+                    "type": "object"
+                },
+                "twin": {
+                    "description": "Routing Twin Reference",
+                    "properties": {
+                        "properties": {
+                            "properties": {
+                                "desired": {
+                                    "description": "Twin desired properties",
+                                    "type": "object"
+                                },
+                                "reported": {
+                                    "description": "Twin desired properties",
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "tags": {
+                            "description": "Twin Tags",
+                            "type": "object"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "required": [
+                "route"
+            ],
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,577 @@
+{
+    "title": "iotHubClient",
+    "description": "Use this API to manage the IoT hubs in your Azure subscription.",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/azure.com/iothub/2018-12-01-preview/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://management.azure.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "azure_auth": {
+                "label": "Azure Active Directory OAuth2 Flow",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://login.microsoftonline.com/common/oauth2/authorize"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "Operations_List": {
+            "main": "./lib/actions/Operations_List.js",
+            "title": "Lists all of the available IoT Hub REST API operations.",
+            "description": "Lists all of the available IoT Hub REST API operations.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Operations_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "IotHubResource_ListBySubscription": {
+            "main": "./lib/actions/IotHubResource_ListBySubscription.js",
+            "title": "Get all the IoT hubs in a subscription",
+            "description": "Get all the IoT hubs in a subscription.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/IotHubResource_ListBySubscription.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "IotHubResource_CheckNameAvailability": {
+            "main": "./lib/actions/IotHubResource_CheckNameAvailability.js",
+            "title": "Check if an IoT hub name is available",
+            "description": "Check if an IoT hub name is available.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/IotHubResource_CheckNameAvailability.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ResourceProviderCommon_GetSubscriptionQuota": {
+            "main": "./lib/actions/ResourceProviderCommon_GetSubscriptionQuota.js",
+            "title": "Get the number of iot hubs in the subscription",
+            "description": "Get the number of free and paid iot hubs in the subscription",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ResourceProviderCommon_GetSubscriptionQuota.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "IotHubResource_ListByResourceGroup": {
+            "main": "./lib/actions/IotHubResource_ListByResourceGroup.js",
+            "title": "Get all the IoT hubs in a resource group",
+            "description": "Get all the IoT hubs in a resource group.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/IotHubResource_ListByResourceGroup.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "IotHubResource_TestAllRoutes": {
+            "main": "./lib/actions/IotHubResource_TestAllRoutes.js",
+            "title": "Test all routes",
+            "description": "Test all routes configured in this Iot Hub",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/IotHubResource_TestAllRoutes.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "IotHubResource_TestRoute": {
+            "main": "./lib/actions/IotHubResource_TestRoute.js",
+            "title": "Test the new route",
+            "description": "Test the new route for this Iot Hub",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/IotHubResource_TestRoute.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "IotHubResource_GetEndpointHealth": {
+            "main": "./lib/actions/IotHubResource_GetEndpointHealth.js",
+            "title": "Get the health for routing endpoints",
+            "description": "Get the health for routing endpoints.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/IotHubResource_GetEndpointHealth.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "IotHubResource_Delete": {
+            "main": "./lib/actions/IotHubResource_Delete.js",
+            "title": "Delete an IoT hub",
+            "description": "Delete an IoT hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/IotHubResource_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "IotHubResource_Get": {
+            "main": "./lib/actions/IotHubResource_Get.js",
+            "title": "Get the non-security related metadata of an IoT hub",
+            "description": "Get the non-security related metadata of an IoT hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/IotHubResource_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "IotHubResource_Update": {
+            "main": "./lib/actions/IotHubResource_Update.js",
+            "title": "Update an existing IoT Hubs tags.",
+            "description": "Update an existing IoT Hub tags. to update other fields use the CreateOrUpdate method",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/IotHubResource_Update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "IotHubResource_CreateOrUpdate": {
+            "main": "./lib/actions/IotHubResource_CreateOrUpdate.js",
+            "title": "Create or update the metadata of an IoT hub.",
+            "description": "Create or update the metadata of an Iot hub. The usual pattern to modify a property is to retrieve the IoT hub metadata and security metadata, and then combine them with the modified values in a new body to update the IoT hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/IotHubResource_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "IotHubResource_GetKeysForKeyName": {
+            "main": "./lib/actions/IotHubResource_GetKeysForKeyName.js",
+            "title": "Get a shared access policy by name from an IoT hub. For more information, see: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-security",
+            "description": "Get a shared access policy by name from an IoT hub. For more information, see: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-security.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/IotHubResource_GetKeysForKeyName.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "IotHubResource_GetStats": {
+            "main": "./lib/actions/IotHubResource_GetStats.js",
+            "title": "Get the statistics from an IoT hub",
+            "description": "Get the statistics from an IoT hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/IotHubResource_GetStats.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Certificates_ListByIotHub": {
+            "main": "./lib/actions/Certificates_ListByIotHub.js",
+            "title": "Get the certificate list.",
+            "description": "Returns the list of certificates.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Certificates_ListByIotHub.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Certificates_Delete": {
+            "main": "./lib/actions/Certificates_Delete.js",
+            "title": "Delete an X509 certificate.",
+            "description": "Deletes an existing X509 certificate or does nothing if it does not exist.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Certificates_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Certificates_Get": {
+            "main": "./lib/actions/Certificates_Get.js",
+            "title": "Get the certificate.",
+            "description": "Returns the certificate.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Certificates_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Certificates_CreateOrUpdate": {
+            "main": "./lib/actions/Certificates_CreateOrUpdate.js",
+            "title": "Upload the certificate to the IoT hub.",
+            "description": "Adds new or replaces existing certificate.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Certificates_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Certificates_GenerateVerificationCode": {
+            "main": "./lib/actions/Certificates_GenerateVerificationCode.js",
+            "title": "Generate verification code for proof of possession flow.",
+            "description": "Generates verification code for proof of possession flow. The verification code will be used to generate a leaf certificate.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Certificates_GenerateVerificationCode.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Certificates_Verify": {
+            "main": "./lib/actions/Certificates_Verify.js",
+            "title": "Verify certificate's private key possession.",
+            "description": "Verifies the certificate's private key possession by providing the leaf cert issued by the verifying pre uploaded certificate.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Certificates_Verify.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "IotHubResource_ListEventHubConsumerGroups": {
+            "main": "./lib/actions/IotHubResource_ListEventHubConsumerGroups.js",
+            "title": "Get a list of the consumer groups in the Event Hub-compatible device-to-cloud endpoint in an IoT hub",
+            "description": "Get a list of the consumer groups in the Event Hub-compatible device-to-cloud endpoint in an IoT hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/IotHubResource_ListEventHubConsumerGroups.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "IotHubResource_DeleteEventHubConsumerGroup": {
+            "main": "./lib/actions/IotHubResource_DeleteEventHubConsumerGroup.js",
+            "title": "Delete a consumer group from an Event Hub-compatible endpoint in an IoT hub",
+            "description": "Delete a consumer group from an Event Hub-compatible endpoint in an IoT hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/IotHubResource_DeleteEventHubConsumerGroup.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "IotHubResource_GetEventHubConsumerGroup": {
+            "main": "./lib/actions/IotHubResource_GetEventHubConsumerGroup.js",
+            "title": "Get a consumer group from the Event Hub-compatible device-to-cloud endpoint for an IoT hub",
+            "description": "Get a consumer group from the Event Hub-compatible device-to-cloud endpoint for an IoT hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/IotHubResource_GetEventHubConsumerGroup.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "IotHubResource_CreateEventHubConsumerGroup": {
+            "main": "./lib/actions/IotHubResource_CreateEventHubConsumerGroup.js",
+            "title": "Add a consumer group to an Event Hub-compatible endpoint in an IoT hub",
+            "description": "Add a consumer group to an Event Hub-compatible endpoint in an IoT hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/IotHubResource_CreateEventHubConsumerGroup.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "IotHubResource_ExportDevices": {
+            "main": "./lib/actions/IotHubResource_ExportDevices.js",
+            "title": "Exports all the device identities in the IoT hub identity registry to an Azure Storage blob container. For more information, see: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-identity-registry#import-and-export-device-identities",
+            "description": "Exports all the device identities in the IoT hub identity registry to an Azure Storage blob container. For more information, see: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-identity-registry#import-and-export-device-identities.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/IotHubResource_ExportDevices.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "IotHubResource_ImportDevices": {
+            "main": "./lib/actions/IotHubResource_ImportDevices.js",
+            "title": "Import, update, or delete device identities in the IoT hub identity registry from a blob. For more information, see: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-identity-registry#import-and-export-device-identities",
+            "description": "Import, update, or delete device identities in the IoT hub identity registry from a blob. For more information, see: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-identity-registry#import-and-export-device-identities.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/IotHubResource_ImportDevices.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "IotHubResource_ListJobs": {
+            "main": "./lib/actions/IotHubResource_ListJobs.js",
+            "title": "Get a list of all the jobs in an IoT hub. For more information, see: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-identity-registry",
+            "description": "Get a list of all the jobs in an IoT hub. For more information, see: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-identity-registry.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/IotHubResource_ListJobs.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "IotHubResource_GetJob": {
+            "main": "./lib/actions/IotHubResource_GetJob.js",
+            "title": "Get the details of a job from an IoT hub. For more information, see: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-identity-registry",
+            "description": "Get the details of a job from an IoT hub. For more information, see: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-identity-registry.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/IotHubResource_GetJob.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "IotHubResource_ListKeys": {
+            "main": "./lib/actions/IotHubResource_ListKeys.js",
+            "title": "Get the security metadata for an IoT hub. For more information, see: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-security",
+            "description": "Get the security metadata for an IoT hub. For more information, see: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-security.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/IotHubResource_ListKeys.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "IotHubResource_GetQuotaMetrics": {
+            "main": "./lib/actions/IotHubResource_GetQuotaMetrics.js",
+            "title": "Get the quota metrics for an IoT hub",
+            "description": "Get the quota metrics for an IoT hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/IotHubResource_GetQuotaMetrics.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "IotHubResource_GetValidSkus": {
+            "main": "./lib/actions/IotHubResource_GetValidSkus.js",
+            "title": "Get the list of valid SKUs for an IoT hub",
+            "description": "Get the list of valid SKUs for an IoT hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/IotHubResource_GetValidSkus.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}
